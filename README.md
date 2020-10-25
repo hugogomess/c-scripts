@@ -10,6 +10,17 @@ gcc script.c -o script
 
 ## Usage
 
+* - dns-resolver
 ```shell
-./script <host>
+./dns-resolver www.example.com
+```
+
+* - port-scanner
+```shell
+./port-scanner 192.168.1.1
+```
+
+* - DoS
+```shell
+./service-DoS 192.168.1.2 21
 ```
