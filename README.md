@@ -11,5 +11,5 @@ gcc script.c -o script
 ## Usage
 
 ```shell
-./script
+./script <host>
 ```
